@@ -6,13 +6,14 @@
 
 (defun make-symbol* (&rest args)
   "build a symbol by concatenating each element of ARGS, and intern it
-  in the current package.  Elements can be strings or symbols."
+  in the LISP-MATRIX package.  Elements can be strings or symbols."
   (intern (apply #'concatenate 'string
                  (mapcar (lambda (arg)
                            (etypecase arg
                              (symbol (symbol-name arg))
                              (string arg)))
-                         args))))
+                         args))
+	  (find-package :lisp-matrix)))
 
 
 ;;; (make-symbol* "test" "me")        =>   |testme| , :INTERNAL
